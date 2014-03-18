@@ -1,12 +1,12 @@
-var getWayPointsResponse;
+var wayPointsResponse;
+var latlngcordinates = [];
 
 function getWayPoints(){
   $.getJSON("/trips/" + tripId + "/stops", function(results){
-    getWayPointsResponse = $.map(results, function(i, result){
-      var latitude = result.latitude;
-      var longitude = result.longitude;
-      var location = {lat: latitude, lng: longitude};
-      return location;
+    latlngcordinates = $.map(results, function(result, i){
+      var latitude = result.place.latitude;
+      var longitude = result.place.longitude;
+      return {lat: latitude, lng: longitude};
     });
   });
 }
